@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Open+Sans:wght@400;600;700&family=Poppins:wght@600;700&family=Roboto:wght@400;500&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+      #buttons{
+        /* border: 1px solid blue; */
+        width: 60%;
+        margin: auto;
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        
+      }
+      #content{
+        border: 1px solid blue;
+        height: auto;
+        width: 60%;
+        margin: auto;
+        margin-top: 15px;
+      }
+      iframe{
+        border: 1px solid blue;
+        height: 400px;
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 20px;
+      }
+      #content p{
+        margin-left: 5%;
+        font-size: 18px;
+        font-family: 'Open Sans', sans-serif;
+        color: #374151;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="buttons">
+      <!--Create buttons namely “Scope”, “Hoisting”, ‘Constructor Functions’, ‘Prototype’ in index.html. Each button will have it's respective name as HTML id. For e.g Scope button will HTML id as "scope". ( Note: no capital letter in id )-->
+      <button id="scope">Scope</button>
+      <button id="hoisting">Hoisting</button>
+      <button id="constructorfunctions" >Constructor Functions</button>
+      <button id="prototype">Prototype</button>
+    </div>
+    <div id="content">
+      <div>
+        <!-- <iframe src="https://www.youtube.com/embed/iJKkZA215tQ" frameborder="0"></iframe> -->
+      </div>
+    </div>
+  </body>
+
+  <script>
+    
+    // Scope data
+
+      let obj1 = {
+      point1:"Scope refers to the availability of variables and functions in certain parts of the code.",
+      point2:"A variable declared at the top of a program or outside of a function is considered a global scope variable.",
+      point3:"A variable can also have a local scope, i.e it can only be accessed within a function.",
+      point4:"The let keyword is block-scoped",
+      point5:"In JavaScript, var is function scoped",
+    }
+    
+    localStorage.setItem("scope" , JSON.stringify(obj1));
+    document.querySelector("#scope").addEventListener("click" , function(){
+      doit('scope',"https://www.youtube.com/embed/iJKkZA215tQ")
+    });
+
+
+    //Hoisting data
+
+    let obj2 = {
+      point1:"Hoisting in JavaScript is a behavior in which a function or a variable can be used before declaration",
+      point2:"In hoisting, though it seems that the declaration has moved up in the program, the actual thing that happens is that the function and variable declarations are added to memory during the compile phase.",
+      point3:"In terms of variables and constants, keyword var is hoisted and let and const does not allow hoisting.",
+      point4:"JavaScript, initializations are not hoisted",
+      point5:"Also, when the variable is used inside the function, the variable is hoisted only to the top of the function. For example,",
+    }
+    
+    localStorage.setItem("hoisting" , JSON.stringify(obj2));
+    document.querySelector("#hoisting").addEventListener("click" , function(){
+      doit('hoisting',"https://www.youtube.com/embed/AplVrrwY1TI")
+    });
+
+
+
+    // //Constructor fn data
+
+    let obj3 = {
+      point1:"In JavaScript, a constructor function is used to create objects.",
+      point2:"In JavaScript, you can create multiple objects from a constructor function.",
+      point3:"In JavaScript, when this keyword is used in a constructor function,",
+      point4:"this refers to the object when the object is created. ",
+      point5:"You can also create a constructor function with parameters.",
+    }
+    
+    localStorage.setItem("constructorfunctions" , JSON.stringify(obj3));
+    document.querySelector("#constructorfunctions").addEventListener("click" , function(){
+      doit('constructorfunctions',"https://www.youtube.com/embed/23AOrSN-wmI")
+    });
+
+
+    // //Prototype data
+    let obj4 = {
+      point1:"In JavaScript, every function and object has a property named prototype by default. ",
+      point2:"In JavaScript, a prototype can be used to add properties",
+      point3:"And objects inherit properties and methods from a prototype. ",
+      point4:"Prototype is used to provide additional property to all the objects created from a constructor function.",
+      point5:"You can also add new methods to a constructor function using prototype.",
+    }
+    
+    localStorage.setItem("prototype" , JSON.stringify(obj4));
+    document.querySelector("#prototype").addEventListener("click" , function(){
+      doit('prototype',"https://www.youtube.com/embed/4jb4AYEyhRc")
+    });
+
+
+    // function
+
+    function doit(item,url){
+      var con = document.querySelector("#content")
+      con.innerHTML = null;
+      
+      let y=JSON.parse(localStorage.getItem(item))
+          let p1 = document.createElement("p")
+          p1.innerText=`1. ${y.point1}`
+          let p2 = document.createElement("p")
+          p2.innerText=`2. ${y.point2}`
+          let p3 = document.createElement("p")
+          p3.innerText=`3. ${y.point3}`
+          let p4 = document.createElement("p")
+          p4.innerText=`4. ${y.point4}`
+          let p5 = document.createElement("p")
+          p5.innerText=`5. ${y.point5}`
+          con.append(p1,p2,p3,p4,p5)
+
+      let frame = document.createElement("iframe")
+      frame.src = url
+      con.append(frame)
+    }
+
+   
+    </script>
+</html>
+
