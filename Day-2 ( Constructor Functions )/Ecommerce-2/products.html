@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            justify-items: center;
+            border: 1px solid blue;
+            gap: 20px;
+            margin-top: 60px;
+        }
+        #container{
+            border: 1px solid blue;
+            height: 400px;
+        }
+        img{
+            width: 100%;
+            height: 70%;
+        }
+        button{
+            margin: 20px;
+            padding: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+    <a href="index.html">
+        <button>Add Product</button>
+        
+    </a>
+
+    <p></p>
+
+    <div id="main">
+
+    </div>
+
+    <script>
+        // addProduct()
+        // let data=JSON.parse(localStorage.getItem("Products"))||[]
+        // function addProduct(){
+            let data=JSON.parse(localStorage.getItem("Products"))||[]
+
+            document.querySelector("p").innerText=`Total items : ${data.length}`
+        // console.log(data)
+        data.map(function(el,ind){
+
+            let box=document.createElement("div")
+            box.setAttribute("id" , "container")
+                var image=document.createElement("img")
+                image.src=el.image
+                
+                var name=document.createElement("div")
+                name.innerText=el.name
+                var brek = document.createElement("br")
+                var price=document.createElement("div")
+                price.innerText=el.price
+
+            let btn1=document.createElement("button")
+            btn1.innerText="Sold"
+            if (data[ind].sold=="false"){
+                btn1.style.backgroundColor="green"
+            }
+            else if (data[ind].sold=="true"){
+                btn1.style.backgroundColor="red"
+            }
+
+            let btn2=document.createElement("button")
+            btn2.innerText="Remove"
+            
+            box.append(image,name,brek,price,btn1,btn2)
+            document.querySelector("#main").append(box)
+
+            btn2.addEventListener("click" , function(){
+                removeItem(el,ind)
+            })
+            btn1.addEventListener("click" , function(){
+                soldornot(el,ind)
+            })
+
+        })
+        // }
+
+        function removeItem(el,ind){
+
+            data.splice(ind,1)
+            localStorage.setItem("Products" , JSON.stringify(data))
+            window.location.reload()
+            // addProduct()
+
+        }
+
+        function  soldornot(el,ind){
+            if (data[ind].sold=="false"){
+                data[ind].sold="true"
+                localStorage.setItem("Products" , JSON.stringify(data))
+                window.location.reload()
+            }
+            else if (data[ind].sold=="true"){
+                data[ind].sold="false"
+                localStorage.setItem("Products" , JSON.stringify(data))
+                window.location.reload()
+            }
+        }
+        
+    </script>
+</body>
+</html>
