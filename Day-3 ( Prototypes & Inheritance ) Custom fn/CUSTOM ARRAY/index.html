@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    
+    function myarray(){
+        Object.defineProperty(this,"length",{
+            value:0,
+            writable:true,
+            enemurable:false,
+        })
+        this.length=arguments.length;              //for line 20 to 23 o/p will be like [a,b,c,3]
+        for(let i=0;i<arguments.length;i++){       //we dont want 3 i.e length coming at the last
+            this[i]=arguments[i]                   //so we type lines from 15 to 19 to hide length
+        }                                          //now o/p :- [a,b,c]
+    }
+    let arr= new myarray("a","b","c")
+    console.log(Object.values(arr))
+
+    myarray.prototype.pushIt=function(value){
+        let index = this.length;
+        this[index]=value;
+        this.length++;
+    }
+    myarray.prototype.popit=function(){
+        let index = this.length-1;
+        delete this[index];
+        this.length--;
+    }
+    myarray.prototype.topel=function(){
+        let index=this.length-1;
+        return this[index]
+    }
+    myarray.prototype.printthem1=function(){
+         console.log( Object.values(arr))
+    }
+    myarray.prototype.printReverse1=function(){
+         let a1=[]
+         for(let j=this.length-1;j>=0;j--){
+            a1.push(arr[j])
+         }
+         console.log(a1)
+    }
+    myarray.prototype.sizeofit=function(){
+         return this.length
+    }
+    arr.pushIt("e")
+    console.log(Object.values(arr))
+    arr.popit()
+    console.log(Object.values(arr))
+    console.log(arr.sizeofit())
+    console.log(arr.topel())
+    arr.printthem1()
+    arr.printReverse1()
+</script>
+</html>
