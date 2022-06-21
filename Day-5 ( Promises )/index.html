@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div id="main">
+
+        <form>
+            <div>
+                <input type="checkbox" id="item1">
+                <label for="item1">Burger</label>
+            </div>
+            <div>
+                <input type="checkbox" id="item2">
+                <label for="item2">Pizza</label>
+            </div>
+            <div>
+                <input type="checkbox" id="item3">
+                <label for="item3">Drink</label>
+            </div>
+            <div>
+                <input type="checkbox" id="item4">
+                <label for="item4">Frensh fries</label>
+            </div>
+            <div>
+                <input type="checkbox" id="item5">
+                <label for="item5">chicken</label>
+            </div>
+            <div>
+                <button type="submit">Order Food</button>
+            </div>
+            
+          </form>
+
+    </div>
+</body>
+</html>
+
+<script>
+    document.querySelector("form").addEventListener("submit" , checkKitchen)
+
+    function checkKitchen(){
+        event.preventDefault()
+        var it1 = document.querySelector("#item1").checked
+        if(it1==true){
+            preparingFood()
+        }
+        else{
+            console.log("Please select food items")
+        }
+
+        function foodServed(){
+            console.log("Food is served")
+        }
+        
+    }
+    function preparingFood(){
+        setTimeout(function(){
+            return ("Food is Prepared")
+        },5000)
+    }
+
+</script>
